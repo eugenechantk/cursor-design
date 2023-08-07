@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {ReactComponent as Enter} from './assets/enter.svg'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='chatbox-container'>
+      {/* Chatbox */}
+      <div className='chat-window'>
+
+      </div>
+      {/* Button row */}
+      <div className='action-bar'>
+        <button className='chat-btn'>
+          <Enter />
+        </button>
+      </div>
     </div>
   );
 }

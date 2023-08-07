@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
-}
+/* DEFAULT STYLING */
+@layer base {
+  .App {
+    text-align: center;
+  }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+  }
+
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+  .App-link {
+    color: #61dafb;
+  }
+
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@layer component {
+  .chatbox-container {
+    width: 384px;
+    height: 116px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 6px;
+    background: #342e2e;
   }
-  to {
-    transform: rotate(360deg);
+
+  .chat-window {
+    padding: 12px;
+    overflow-y: scroll;
+    flex: 1;
+  }
+
+  .action-bar {
+    display: flex;
+    width: 384px;
+    padding: 4px;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px solid #3a3232;
+    background: #242020;
+  }
+
+  .chat-btn {
+    background: linear-gradient(180deg, #214b89 0%, #23395c 100%);
+    border-radius: 2px;
+    width: 28px;
+    height: 28px;
   }
 }
