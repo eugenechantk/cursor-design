@@ -1,23 +1,26 @@
 import "./App.css";
 import { ReactComponent as Enter } from "./assets/enter.svg";
 import React from "react";
-import FileReferenceContainer, { File } from "./components/FileReferenceContainer";
+import FileReferenceContainer, {
+  File,
+} from "./components/FileReferenceContainer";
 import styled from "styled-components";
 import ModelSelector, { Model, models } from "./components/ModelSelector";
 
 const allFiles: File[] = [
   { name: "file1.txt", lineNumber: "1-16", id: "file1.txt" },
-  { name: "file1.txt", lineNumber: "1-16", id: "file1.txt" },
-  { name: "file1.txt", lineNumber: "1-16", id: "file1.txt" },
-  { name: "file1.txt", lineNumber: "1-16", id: "file1.txt" },
-  { name: "file1.txt", lineNumber: "1-16", id: "file1.txt" },
-  { name: "file1.txt", lineNumber: "1-16", id: "file1.txt" },
+  { name: "file1.txt", lineNumber: "1-16", id: "file2.txt" },
+  { name: "file1.txt", lineNumber: "1-16", id: "file3.txt" },
+  { name: "file1.txt", lineNumber: "1-16", id: "file4.txt" },
+  { name: "file1.txt", lineNumber: "1-16", id: "file5.txt" },
+  { name: "file1.txt", lineNumber: "1-16", id: "file6.txt" },
 ];
 
 function App() {
   const chatWindowRef = React.useRef<HTMLDivElement>(null);
   const [currentModel, setCurrentModel] = React.useState<Model>(models[0]);
   const [expand, setExpand] = React.useState(false);
+  const [files, setFiles] = React.useState<File[]>(allFiles);
 
   React.useEffect(() => {
     chatWindowRef.current?.addEventListener("keydown", (event) => {
@@ -59,10 +62,18 @@ function App() {
       {/* Action Bar */}
       <ActionBarContainer>
         {/* List of files as AI context */}
-        <FileReferenceContainer files={allFiles} expand={expand} setExpand={setExpand}/>
+        <FileReferenceContainer
+          files={files}
+          expand={expand}
+          setExpand={setExpand}
+          setFiles={setFiles}
+        />
         {/* Chat button and Model selection */}
         <ModelAndEnterContainer expand={expand}>
-          <ModelSelector currentModel={currentModel} setModel={setCurrentModel}/>
+          <ModelSelector
+            currentModel={currentModel}
+            setModel={setCurrentModel}
+          />
           <ChatBtn>
             <Enter />
           </ChatBtn>
@@ -105,7 +116,7 @@ const ActionBarContainer = styled.div`
   width: 100%;
 `;
 
-const ModelAndEnterContainer = styled.div<{expand: boolean}>`
+const ModelAndEnterContainer = styled.div<{ expand: boolean }>`
   display: flex;
   align-items: center;
   gap: 4px;

@@ -13,10 +13,12 @@ export default function FileReferenceContainer({
   files,
   expand,
   setExpand,
+  setFiles,
 }: {
   files: File[];
   expand: boolean;
   setExpand: React.Dispatch<React.SetStateAction<boolean>>;
+  setFiles: React.Dispatch<React.SetStateAction<File[]>>;
 }) {
   const [visibleFiles, setVisibleFiles] = useState<File[]>([]);
   const [remainingCount, setRemainingCount] = useState(0);
@@ -88,10 +90,24 @@ export default function FileReferenceContainer({
       <FileReferences ref={containerRef} expanded={expand}>
         {!expand
           ? visibleFiles.map((file, index) => (
-              <FileReferenceTag file={file} key={index} />
+              <FileReferenceTag
+                file={file}
+                key={index}
+                onDelete={() => {
+                  const newFiles = files.filter((f) => f.id !== file.id);
+                  setFiles(newFiles);
+                }}
+              />
             ))
           : files.map((file, index) => (
-              <FileReferenceTag file={file} key={index} />
+              <FileReferenceTag
+                file={file}
+                key={index}
+                onDelete={() => {
+                  const newFiles = files.filter((f) => f.id !== file.id);
+                  setFiles(newFiles);
+                }}
+              />
             ))}
         {visibleFiles.length < files.length && !expand && (
           <MoreButton onClick={() => setExpand(true)}>
@@ -119,7 +135,7 @@ const FileReferences = styled.div<{ expanded: boolean }>`
   overflow: scroll;
   width: 100%;
   max-width: ${(props) => (props.expanded ? "288px" : "fit-content")};
-  
+
   &::-webkit-scrollbar {
     display: none;
   }

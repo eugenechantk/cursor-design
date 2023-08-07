@@ -5,14 +5,16 @@ import { File } from "./FileReferenceContainer";
 
 export default function FileReferenceTag({
   file,
+  onDelete,
 }: {
   file: File;
+  onDelete: () => void;
 }) {
   return (
     <Container>
       <FileName>{file.name}</FileName>
       {file.lineNumber && <FileLines>{`@${file.lineNumber}`}</FileLines>}
-      <RemoveButton>
+      <RemoveButton onClick={onDelete}>
         <XMarkIcon width={14} height={14} style={{color: "#7B7B7B"}}/>
       </RemoveButton>
     </Container>
